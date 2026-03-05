@@ -8,7 +8,10 @@ interface Task {
   updatedAt?: string;
 }
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.MODE === 'production'
+  ? import.meta.env.VITE_PROD_API_URL // actual site
+  : import.meta.env.VITE_DEV_API_URL; // local/dev
+console.log(API)
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -70,11 +73,11 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="bg-white shadow-xl rounded-2xl p-6 w-96">
-        <h1 className="text-2xl font-bold mb-4">CRUD App (TS)</h1>
+        <h1 className="text-2xl font-bold mb-4">CRUD App</h1>
 
         <div className="flex gap-2 mb-4">
           <input
-            className="border p-2 flex-1 rounded-lg"
+            className="border border-gray-200 p-2 flex-1 rounded-lg"
             value={title}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setTitle(e.target.value)
@@ -103,21 +106,21 @@ function App() {
           {tasks.map((task) => (
             <li
               key={task._id}
-              className="flex justify-between items-center border p-2 rounded-lg"
+              className="flex justify-between items-center border border-gray-200 p-2 rounded-lg"
             >
               <span>{task.title}</span>
 
               <div className="flex gap-2">
                 <button
                   onClick={() => startEdit(task)}
-                  className="text-blue-500"
+                  className="text-blue-400"
                 >
                   Edit
                 </button>
 
                 <button
                   onClick={() => deleteTask(task._id)}
-                  className="text-red-500"
+                  className="text-red-400"
                 >
                   Delete
                 </button>
