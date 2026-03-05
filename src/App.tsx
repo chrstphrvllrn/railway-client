@@ -8,7 +8,7 @@ interface Task {
   updatedAt?: string;
 }
 
-const API = "http://railway-server-production-77f2.up.railway.app/api/tasks";
+const API = import.meta.env.VITE_API_URL;
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
