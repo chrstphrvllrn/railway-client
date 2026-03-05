@@ -8,7 +8,7 @@ interface Task {
   updatedAt?: string;
 }
 
-const API = "http://localhost:5000/api/tasks";
+const API = "http://railway-server-production-77f2.up.railway.app/api/tasks";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
