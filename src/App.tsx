@@ -11,7 +11,7 @@ interface Task {
 const API = import.meta.env.MODE === 'production'
   ? import.meta.env.VITE_PROD_API_URL // actual site
   : import.meta.env.VITE_DEV_API_URL; // local/dev
-console.log(API)
+// console.log(API)
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
